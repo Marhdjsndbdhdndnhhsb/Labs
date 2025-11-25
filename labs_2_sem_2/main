@@ -1,1 +1,8 @@
-11
+def safe_run(func):
+    def wrapper(*args, **kwargs):
+        try:
+            return func(*args, **kwargs)
+        except Exception as e:
+            print(f"Сталася помилка: {e}")
+    return wrapper
+
