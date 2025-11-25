@@ -1,1 +1,30 @@
-1
+#1)Ітератор, який повертає пари (індекс, значення) елементів списку.
+my_list = ['apple', 'banana', 'cherry', 'date']
+print("1. Ітератор (enumerate):")
+iterator_pairs = enumerate(my_list) 
+for index, value in iterator_pairs:
+    print(f"({index}, '{value}')")
+
+#2)Генератор, який видає літери англійського алфавіту по одній.
+import string 
+def english_alphabet_generator():
+    """Генератор, що видає літери англійського алфавіту (від 'a' до 'z') по одній."""
+    for letter in string.ascii_lowercase: 
+        yield letter
+alphabet_gen = english_alphabet_generator()
+print("\n2. Генератор англійського алфавіту:")
+print(next(alphabet_gen)) 
+print(next(alphabet_gen)) 
+for i in range(5):
+    print(next(alphabet_gen), end=' ') 
+print('\n... і ще одна:')
+print(next(alphabet_gen)) 
+
+#3)Створіть генераторне вираження, що створює список квадратів непарних чисел від 1 до 20.
+
+# 3. Генераторне вираження
+squares_of_odd = (x ** 2 for x in range(1, 21) if x % 2 != 0)
+print("\n3. Генераторне вираження (квадрати непарних чисел від 1 до 20):")
+print("Створено генератор:", squares_of_odd)
+final_list = list(squares_of_odd)
+print("Отриманий список квадратів:", final_list)
