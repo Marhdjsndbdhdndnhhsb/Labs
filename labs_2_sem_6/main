@@ -1,1 +1,65 @@
-1
+from abc import ABC, abstractmethod
+
+# 1. Створення абстрактного класу MediaFile
+class MediaFile(ABC):
+    """
+    Абстрактний базовий клас для всіх медіафайлів.
+    Вимагає реалізації методів play() та stop().
+    """
+
+    def __init__(self, filename):
+        self.filename = filename
+
+    @abstractmethod
+    def play(self):
+        """Абстрактний метод для відтворення медіафайлу."""
+        pass
+
+    @abstractmethod
+    def stop(self):
+        """Абстрактний метод для зупинки відтворення."""
+        pass
+
+# 2. Створення конкретних підкласів
+
+class AudioFile(MediaFile):
+    """Підклас для аудіофайлів (наприклад, MP3)."""
+
+    def play(self):
+        print(f"▶️ Відтворення аудіо: {self.filename}")
+
+    def stop(self):
+        print(f"⏹️ Зупинка аудіо: {self.filename}")
+
+class VideoFile(MediaFile):
+    """Підклас для відеофайлів (наприклад, MP4)."""
+
+    def play(self):
+        print(f"▶️ Запуск відео: {self.filename} (показуємо зображення і звук).")
+
+    def stop(self):
+        print(f"⏹️ Зупинка відео: {self.filename}.")
+
+class ImageFile(MediaFile):
+    """Підклас для файлів зображень (наприклад, JPG)."""
+    
+    # Методи play/stop тут означають відображення/закриття
+    def play(self):
+        print(f"🖼️ Відображення зображення: {self.filename}")
+
+    def stop(self):
+        print(f"❌ Закриття вікна зображення: {self.filename}")
+
+audio = AudioFile("podcast.ogg")
+video = VideoFile("holiday.mov")
+image = ImageFile("portrait.png")
+
+media_list = [audio, video, image]
+
+print("\n--- Запуск об'єктів через єдиний інтерфейс ---")
+for item in media_list:
+    item.play()
+    
+print("\n--- Зупинка об'єктів ---")
+for item in media_list:
+    item.stop()
